@@ -94,5 +94,10 @@ namespace PrincessBrideTrivia
             }
             return questions;
         }
+
+        public static Question[] RandomizeQuestions(Question[] questions)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

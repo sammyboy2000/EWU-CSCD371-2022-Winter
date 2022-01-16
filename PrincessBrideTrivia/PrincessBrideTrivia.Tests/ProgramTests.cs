@@ -72,7 +72,21 @@ namespace PrincessBrideTrivia.Tests
             Assert.AreEqual(expectedString, percentage);
         }
 
-                private static void GenerateQuestionsFile(string filePath, int numberOfQuestions)
+        [TestMethod]
+        public void RandomizeQuestions_ReturnsRandomizedQuestions()
+        {
+            // Arrange
+            Question[] questions = new Question[10];
+            for (int i = 0; i < 10; i++)
+            {
+               questions[i] = new Question();
+                string index = i.ToString();
+                questions[i].Text = index;
+            }
+            questions = Program.RandomizeQuestions(questions);
+        }
+                
+        private static void GenerateQuestionsFile(string filePath, int numberOfQuestions)
         {
             for (int i = 0; i < numberOfQuestions; i++)
             {
