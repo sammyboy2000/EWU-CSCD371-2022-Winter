@@ -60,7 +60,7 @@ namespace PrincessBrideTrivia.Tests
         [DataRow(5, 10, "50%")]
         [DataRow(1, 10, "10%")]
         [DataRow(0, 10, "0%")]
-        public void GetPercentCorrect_ReturnsExpectedPercentage(int numberOfCorrectGuesses, 
+        public void GetPercentCorrect_ReturnsExpectedPercentage(int numberOfCorrectGuesses,
             int numberOfQuestions, string expectedString)
         {
             // Arrange
@@ -79,13 +79,39 @@ namespace PrincessBrideTrivia.Tests
             Question[] questions = new Question[10];
             for (int i = 0; i < 10; i++)
             {
-               questions[i] = new Question();
+                questions[i] = new Question();
                 string index = i.ToString();
                 questions[i].Text = index;
             }
             questions = Program.RandomizeQuestions(questions);
+
+            for (int i = 0; i < 10; i++)
+            {
+                string index = i.ToString();
+                Assert.AreNotEqual(questions[i].Text,
+                                   actual: index);
+            }
         }
-                
+
+        [TestMethod]
+        public void SwapElements_ProperlySwapsElements()
+        {
+            Question[] questions = new Question[2];
+            for (int i = 0; i < 2; i++)
+            {
+                questions[i] = new Question();
+                string index = i.ToString();
+                questions[i].Text = index;
+            }
+
+            Program.SwapArrayElements(0, 1, questions);
+
+            Assert.AreNotEqual(0,
+                                questions[0].Text);
+            Assert.AreNotEqual(1,
+                               questions[1].Text);
+        }
+
         private static void GenerateQuestionsFile(string filePath, int numberOfQuestions)
         {
             for (int i = 0; i < numberOfQuestions; i++)
