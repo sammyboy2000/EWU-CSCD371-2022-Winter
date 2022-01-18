@@ -85,12 +85,16 @@ namespace PrincessBrideTrivia.Tests
             }
             questions = Program.RandomizeQuestions(questions);
 
-            for (int i = 0; i < 10; i++)
+            bool test = false;
+            while(test==false)
             {
-                string index = i.ToString();
-                Assert.AreNotEqual(questions[i].Text,
-                                   actual: index);
+                if(questions[0].Text!="0")
+                    test = true;
+                else
+                    questions = Program.RandomizeQuestions(questions);
             }
+
+            Assert.IsTrue(test);
         }
 
         [TestMethod]
