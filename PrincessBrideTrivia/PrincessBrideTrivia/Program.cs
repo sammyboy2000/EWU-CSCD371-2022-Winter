@@ -9,6 +9,9 @@ namespace PrincessBrideTrivia
         {
             string filePath = GetFilePath();
             Question[] questions = LoadQuestions(filePath);
+            Console.WriteLine("Would you like to randomize the questions? y/n");
+            if (GetGuessFromUser() == "y")
+                questions = RandomizeQuestions(questions);
 
             int numberCorrect = 0;
             for (int i = 0; i < questions.Length; i++)
