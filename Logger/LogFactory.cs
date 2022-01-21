@@ -4,7 +4,6 @@
     {
         public BaseLogger CreateLogger(string className)
         {
-            
             return null;
         }
     }
