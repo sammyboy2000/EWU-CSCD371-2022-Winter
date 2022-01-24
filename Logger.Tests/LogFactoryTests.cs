@@ -15,13 +15,33 @@ namespace Logger.Tests
             try
             {
                 // Arrange
-                LogFactory.ConfigureFileLogger(nameof(ClassName), filePath);
+                LogFactory logFactory = new();
 
                 // Act
-
+                BaseLogger logger = LogFactory.ConfigureFileLogger(ClassName, filePath);
 
                 // Assert 
+                Assert.IsNotNull(logger);
+            }
+            finally
+            {
+                File.Delete(filePath);
+            }
+        }
+        [TestMethod]
+        public void ParseMessage_GivenProperArgs_Message()
+        {
+            string filePath = Path.GetRandomFileName();
+            try
+            {
+                // Arrange
+                TestLogger logger = new();
 
+                // Act
+                logger.Error("Test message: {0}", 39);
+
+                // Assert 
+                Assert.AreEqual(logger.LoggedMessages[0].Message, "Test message: 39");
             }
             finally
             {

@@ -4,49 +4,50 @@ namespace Logger
 {
     public static class BaseLoggerMixins
     {
-        public static void Error(string message, params BaseLogger[] loggers)
+        public static void Error(this BaseLogger logger, string message, params object[] args)
         {
-            if (loggers is null)
+            if (logger is null)
             {
-                throw new ArgumentNullException(nameof(loggers));
+                throw new ArgumentNullException(nameof(logger));
             }
-            foreach (var logger in loggers)
-            {
-                logger.Log(LogLevel.Error, message);
-            }
+            message = ParseMessage(message, args);
+            logger.Log(LogLevel.Error, message);
         }
-        public static void Warning(string message, params BaseLogger[] loggers)
+        public static void Warning(this BaseLogger logger, string message, params object[] args)
         {
-            if (loggers is null)
+            if (logger is null)
             {
-                throw new ArgumentNullException(nameof(loggers));
+                throw new ArgumentNullException(nameof(logger));
             }
-            foreach (var logger in loggers)
-            {
-                logger.Log(LogLevel.Warning, message);
-            }
+            message = ParseMessage(message, args);
+            logger.Log(LogLevel.Warning, message);
         }
-        public static void Information(string message, params BaseLogger[] loggers)
+        public static void Information(this BaseLogger logger, string message, params object[] args)
         {
-            if (loggers is null)
+            if (logger is null)
             {
-                throw new ArgumentNullException(nameof(loggers));
+                throw new ArgumentNullException(nameof(logger));
             }
-            foreach (var logger in loggers)
-            {
-                logger.Log(LogLevel.Information, message);
-            }
+            message = ParseMessage(message, args);
+            logger.Log(LogLevel.Information, message);
         }
-        public static void Debug(string message, params BaseLogger[] loggers)
+        public static void Debug(this BaseLogger logger, string message, params object[] args)
         {
-            if (loggers is null)
+            if (logger is null)
             {
-                throw new ArgumentNullException(nameof(loggers));
+                throw new ArgumentNullException(nameof(logger));
             }
-            foreach (var logger in loggers)
+            message = ParseMessage(message, args);
+            logger.Log(LogLevel.Debug, message);
+        }
+        private static string ParseMessage(string message, object[] args)
+        {
+            for (int x = 0; x < args.Length; x++)
             {
-                logger.Log(LogLevel.Debug, message);
+                message = message.Replace("{" + x + "}", args[x].ToString());
             }
+            return message;
         }
     }
 }
+

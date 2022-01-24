@@ -4,13 +4,13 @@ namespace Logger
 {
     public class LogFactory
     {
-        public BaseLogger CreateLogger(string className)
+        public static BaseLogger CreateLogger(string className)
         {
-            //Unfinished
+            Console.WriteLine("What file do you want to write the log to?");
             return ConfigureFileLogger(className, Console.ReadLine());
         }
 
-        public BaseLogger ConfigureFileLogger(string className, string filePath)
+        public static BaseLogger ConfigureFileLogger(string className, string? filePath)
         {
             if (String.IsNullOrEmpty(filePath))
             {
@@ -18,7 +18,7 @@ namespace Logger
                 return null!;
             }
 
-            return new FileLogger(className, filePath);
+            return new FileLogger(className, filePath!);
         }
     }
 }
