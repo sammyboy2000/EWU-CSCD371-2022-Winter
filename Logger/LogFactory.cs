@@ -7,7 +7,7 @@ namespace Logger
         public static BaseLogger CreateLogger(string className)
         {
             Console.WriteLine("What file do you want to write the log to?");
-            return ConfigureFileLogger(className, Console.ReadLine());
+            return ConfigureFileLogger(className, @Console.ReadLine());
         }
 
         public static BaseLogger ConfigureFileLogger(string className, string? filePath)
