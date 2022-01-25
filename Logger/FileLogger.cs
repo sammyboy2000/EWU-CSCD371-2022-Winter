@@ -16,7 +16,7 @@ namespace Logger
         public override void Log(LogLevel logLevel, string message)
         {
             //example: 10/7/2019 12:38:59 AM FileLoggerTests Warning: Test message
-            File.AppendAllText(FilePath, $"{DateTime.Now} {nameof(ClassName)} {logLevel}: {message} \n");
+            File.AppendAllText(FilePath, $"{DateTime.Now} {ClassName} {logLevel}: {message} \n");
         }
     }
 }
