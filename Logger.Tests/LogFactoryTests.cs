@@ -15,7 +15,6 @@ namespace Logger.Tests
             try
             {
                 // Arrange
-                LogFactory logFactory = new();
 
                 // Act
                 BaseLogger logger = LogFactory.ConfigureFileLogger(ClassName, filePath);
