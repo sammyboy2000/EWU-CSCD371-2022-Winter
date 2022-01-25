@@ -9,7 +9,7 @@ namespace Logger
             BaseLogger logger;
             Console.WriteLine("What kind of logger whould you like to make?");
             Console.WriteLine("1. File Logger");
-            Console.WriteLine("2. Console Logger (not yet implemented)");
+            Console.WriteLine("2. Console Logger");
             Console.WriteLine("press q to quit");
             switch (Console.ReadLine())
             {
@@ -17,11 +17,16 @@ namespace Logger
                     Console.WriteLine("What file would you like to write to?");
                     return logger = ConfigureFileLogger(className, Console.ReadLine());
                 case "2":
-                    return null!;
+                    return logger = ConfigureConsoleLogger(className);
                 default:
                     return null!;
 
             }
+        }
+
+        public static BaseLogger ConfigureConsoleLogger(string className)
+        {
+            return new ConsoleLogger(className);
         }
 
         public static BaseLogger ConfigureFileLogger(string className, string? filePath)

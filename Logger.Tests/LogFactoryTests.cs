@@ -28,6 +28,13 @@ namespace Logger.Tests
             }
         }
         [TestMethod]
+        public void ConfigureConsoleLogger_ReturnsConsoleLogger()
+        {
+            BaseLogger consoleLogger = LogFactory.ConfigureConsoleLogger("LogFactoryTests");
+            Assert.IsNotNull(consoleLogger);
+
+        }
+        [TestMethod]
         public void ParseMessage_GivenProperArgs_Message()
         {
             string filePath = Path.GetRandomFileName();
