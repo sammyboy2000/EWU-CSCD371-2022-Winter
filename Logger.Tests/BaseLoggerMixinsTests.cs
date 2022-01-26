@@ -23,7 +23,7 @@ namespace Logger.Tests
         public void Error_WithData_LogsMessage()
         {
             // Arrange
-            TestLogger? logger = new TestLogger();
+            TestLogger? logger = new();
 
             // Act
             logger.Error("Message {0}", 42);
