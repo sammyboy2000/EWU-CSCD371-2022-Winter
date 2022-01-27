@@ -12,6 +12,11 @@ namespace CanHazFunny
             {
                 Console.WriteLine("Would you like to hear a joke? y/n");
                 response = Console.ReadLine();
+                if(response == "y")
+                {
+                    string joke = jester.FindJoke();
+                    jester.PresentJoke(joke);
+                }
             }
         }
     }

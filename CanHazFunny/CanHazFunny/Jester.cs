@@ -10,8 +10,16 @@ namespace CanHazFunny
         {
             HttpClient = new HttpClient();
         }
-        public string GetJoke() => IJokeService.GetJoke(HttpClient);
+        public string GetJoke()
+        { 
+            return HttpClient.GetStringAsync(new Uri("https://geek-jokes.sameerkumar.website/api")).Result;
+        }
 
         public void PresentJoke(string joke) => Console.WriteLine(joke);
+
+        internal string FindJoke()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
