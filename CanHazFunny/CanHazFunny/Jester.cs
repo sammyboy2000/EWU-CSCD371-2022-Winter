@@ -4,7 +4,7 @@ using System.Net.Http;
 namespace CanHazFunny
 {
     internal class Jester : IJokeService, IOutput
-    { 
+    {
         public HttpClient HttpClient { get; }
         public Jester()
         {
