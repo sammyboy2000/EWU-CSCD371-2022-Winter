@@ -4,6 +4,6 @@ namespace CanHazFunny
 {
     public interface IOutput
     {
-        public static void PresentJoke(string joke) => Console.WriteLine(joke);
+        public void PresentJoke(string joke);
     }
 }

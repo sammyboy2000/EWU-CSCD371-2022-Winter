@@ -5,11 +5,11 @@ namespace CanHazFunny
 {
     public interface IJokeService
     {
-        HttpClient HttpClient { get; }
-
-        public string GetJoke()
+        public HttpClient HttpClient { get; }
+        public static string GetJoke(HttpClient? httpClient)
         {
-            return HttpClient.GetStringAsync(new Uri("https://geek-jokes.sameerkumar.website/api")).Result;
+            if(httpClient == null) { throw new ArgumentNullException(nameof(httpClient)); }
+            return httpClient.GetStringAsync(new Uri("https://geek-jokes.sameerkumar.website/api")).Result;
         }
     }
 }
