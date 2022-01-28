@@ -11,7 +11,7 @@ namespace CanHazFunny
             HttpClient = new HttpClient();
         }
         public string GetJoke()
-        { 
+        {
             return HttpClient.GetStringAsync(new Uri("https://geek-jokes.sameerkumar.website/api")).Result;
         }
 
