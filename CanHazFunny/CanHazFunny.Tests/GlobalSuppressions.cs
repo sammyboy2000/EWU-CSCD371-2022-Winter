@@ -4,8 +4,14 @@
 // a specific target and scoped to a namespace, type, member, etc.
 
 using System.Diagnostics.CodeAnalysis;
-
-//Underscores are included in test methods for naming clarity.
-//PascalCase is violated by underscoring as well, so it is disabled here.
-[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.IJokeServiceTests.GetJoke_GivenHttpClient_ReturnsJoke")]
-[assembly: SuppressMessage("Naming", "INTL0003:Methods PascalCase", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.IJokeServiceTests.GetJoke_GivenHttpClient_ReturnsJoke")]
+//Underscores are used in Test Methods appropriately, so warning is surppressed.
+[assembly: SuppressMessage("Naming", "INTL0003:Methods PascalCase", Justification = "Names may use underscores in test classes.", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.Jester_InitializeHttpClient_Success")]
+[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.Jester_InitializeHttpClient_Success")]
+[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.GetJoke_ReturnsValidJoke_Success")]
+[assembly: SuppressMessage("Naming", "INTL0003:Methods PascalCase", Justification = "Names may use underscores in test classes.", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.GetJoke_ReturnsValidJoke_Success")]
+[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.ScreenJoke_GivenValidJoke_Success")]
+[assembly: SuppressMessage("Naming", "INTL0003:Methods PascalCase", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.ScreenJoke_GivenValidJoke_Success")]
+[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.ScreenJoke_GivenInvalidJoke_Failure")]
+[assembly: SuppressMessage("Naming", "INTL0003:Methods PascalCase", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.ScreenJoke_GivenInvalidJoke_Failure")]
+[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.FindJoke_GivenFilters_Success")]
+[assembly: SuppressMessage("Naming", "INTL0003:Methods PascalCase", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.FindJoke_GivenFilters_Success")]

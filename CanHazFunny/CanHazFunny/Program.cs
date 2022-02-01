@@ -16,7 +16,7 @@ namespace CanHazFunny
             else
             {
                 Console.WriteLine("Filtering out \"Chuck Norris\" jokes.");
-                args = new string[]{ "Chuck", "Norris" };
+                args = new string[] { "Chuck", "Norris" };
             }
             Jester jester = new();
             string? response;
@@ -41,5 +41,5 @@ namespace CanHazFunny
             } while (response != "n");
             Console.WriteLine("Have a pun-derful day!");
         }
-}
+    }
 }
