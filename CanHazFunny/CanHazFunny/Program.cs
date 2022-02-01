@@ -16,6 +16,7 @@ namespace CanHazFunny
             else
             {
                 Console.WriteLine("Filtering out \"Chuck Norris\" jokes.");
+                Console.WriteLine("You can change the filter by passing arguments on startup.");
                 args = new string[] { "Chuck", "Norris" };
             }
             Jester jester = new();
@@ -29,7 +30,7 @@ namespace CanHazFunny
                     case "y":
                         string joke = jester.FindJoke(args);
                         jester.PresentJoke(joke);
-                        Console.WriteLine("Would you like to hear another joke?");
+                        Console.WriteLine("Would you like to hear another joke? y/n");
                         break;
                     case "n":
                         break;
