@@ -15,9 +15,9 @@ namespace CanHazFunny
             return HttpClient.GetStringAsync(new Uri("https://geek-jokes.sameerkumar.website/api")).Result;
         }
 
-        public void PresentJoke(string joke) => Console.WriteLine(joke);
+        
 
-        public string FindJoke(string[] filters)
+        public void TellJoke(string[] filters)
         {
             string joke;
             do
@@ -25,7 +25,7 @@ namespace CanHazFunny
                 joke = GetJoke();
             } while (!ScreenJoke(joke, filters));
 
-            return joke;
+            IOutput.PresentJoke(joke);
         }
 
         public static bool ScreenJoke(string joke, string[] filters)

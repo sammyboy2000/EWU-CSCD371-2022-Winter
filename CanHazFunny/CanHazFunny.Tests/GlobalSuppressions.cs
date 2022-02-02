@@ -15,3 +15,5 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Naming", "INTL0003:Methods PascalCase", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.ScreenJoke_GivenInvalidJoke_Failure")]
 [assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.FindJoke_GivenFilters_Success")]
 [assembly: SuppressMessage("Naming", "INTL0003:Methods PascalCase", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.FindJoke_GivenFilters_Success")]
+[assembly: SuppressMessage("Naming", "INTL0003:Methods PascalCase", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.TellJoke_GivenFilters_Success")]
+[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "member", Target = "~M:CanHazFunny.Tests.JesterTests.TellJoke_GivenFilters_Success")]

@@ -28,8 +28,7 @@ namespace CanHazFunny
                 switch (response)
                 {
                     case "y":
-                        string joke = jester.FindJoke(args);
-                        jester.PresentJoke(joke);
+                        jester.TellJoke(args);
                         Console.WriteLine("Would you like to hear another joke? y/n");
                         break;
                     case "n":

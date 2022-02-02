@@ -34,11 +34,11 @@ namespace CanHazFunny.Tests
         }
 
         [TestMethod]
-        public void FindJoke_GivenFilters_Success()
+        public void TellJoke_GivenFilters_Success()
         {
             Jester mock = new();
             string[] filters = { "Lots", "of", "filters", "Chuck", "Norris", "1337", "joke", "punny" };
-            string joke = mock.FindJoke(filters);
+            string joke = mock.TellJoke(filters);
             bool validJoke = true;
             foreach (string filter in filters)
             {

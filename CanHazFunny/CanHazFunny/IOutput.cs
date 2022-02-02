@@ -1,7 +1,9 @@
-﻿namespace CanHazFunny
+﻿using System;
+
+namespace CanHazFunny
 {
     public interface IOutput
     {
-        public void PresentJoke(string joke);
+        public static void PresentJoke(string joke) => Console.WriteLine(joke);
     }
 }
