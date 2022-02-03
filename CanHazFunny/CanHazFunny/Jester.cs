@@ -3,26 +3,22 @@ using System.Net.Http;
 
 namespace CanHazFunny
 {
-    public class Jester : IJokeService, IOutput
+    public class Jester : IOutput
     {
         public HttpClient HttpClient { get; }
+        public JokeService JokeService { get; }
         public Jester()
         {
             HttpClient = new HttpClient();
+            JokeService = new JokeService();
         }
-        public string GetJoke()
-        {
-            return HttpClient.GetStringAsync(new Uri("https://geek-jokes.sameerkumar.website/api")).Result;
-        }
-
-        
 
         public void TellJoke(string[] filters)
         {
             string joke;
             do
             {
-                joke = GetJoke();
+                joke = JokeService.GetJoke(HttpClient);
             } while (!ScreenJoke(joke, filters));
 
             IOutput.PresentJoke(joke);
