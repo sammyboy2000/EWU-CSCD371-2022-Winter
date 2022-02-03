@@ -18,7 +18,7 @@ namespace CanHazFunny.Tests
         public void GetJoke_ReturnsValidJoke_Success()
         {
             Jester mock = new();
-            Assert.IsNotNull(mock.GetJoke());
+            Assert.IsNotNull(mock.JokeService.GetJoke(mock.HttpClient));
         }
 
         [TestMethod]
