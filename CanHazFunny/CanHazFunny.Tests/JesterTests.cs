@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 
 namespace CanHazFunny.Tests
 {
@@ -37,8 +39,15 @@ namespace CanHazFunny.Tests
         public void TellJoke_GivenFilters_Success()
         {
             Jester mock = new();
+            //Redirect Console output to StringWriter
+            StringWriter output = new();
+            Console.SetOut(output);
             string[] filters = { "Lots", "of", "filters", "Chuck", "Norris", "1337", "joke", "punny" };
-            string joke = mock.TellJoke(filters);
+            mock.TellJoke(filters);
+            string joke = output.ToString();
+            Assert.IsNotNull(@joke);
+            //Close StringWriter
+            output.Dispose();
             bool validJoke = true;
             foreach (string filter in filters)
             {
