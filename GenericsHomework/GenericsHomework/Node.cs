@@ -68,5 +68,18 @@
             }
             return false;
         }
+        public void Clear()
+        {
+            //Does not work when simple setting this to this.Next
+            //GC is smart enough to clean up a circling list, but not to clean up 
+            //a list that has a reference to a variable that is still in scope.
+            if (this == this.Next)
+               return;
+           Node index = this;
+           while (index.Next != this)
+               index = index.Next;
+           index.Next = index.Next.Next;
+            this.Next = this;
+        }
     }
 }

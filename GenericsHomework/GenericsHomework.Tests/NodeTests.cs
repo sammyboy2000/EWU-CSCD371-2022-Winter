@@ -47,5 +47,15 @@ namespace GenericsHomework.Tests
             Node node = new("null");
             node.Append(null);
         }
+        [TestMethod]
+        public void Clear_MemoryCleared()
+        {
+            Node node = new("1st");
+            node.Append("2nd");
+            node.Append("3rd"); //Check memory usage here, using Diagnostic Tools
+            node.Clear();
+            GC.Collect();   
+            Assert.AreEqual(node, node.GetNext());//Check memory usage here, is lower
+        }
     }
 }
