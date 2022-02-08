@@ -70,9 +70,9 @@
         }
         public void Clear()
         {
-            //Does not work when simple setting this to this.Next
-            //GC is smart enough to clean up a circling list, but not to clean up 
-            //a list that has a reference to a variable that is still in scope.
+            //Does work when simply setting this to this.Next
+            //GC is smart enough to clean up a circling list that has no references
+            //debug builds will hang onto that memory for longer though.
             if (this == this.Next)
                return;
            Node index = this;

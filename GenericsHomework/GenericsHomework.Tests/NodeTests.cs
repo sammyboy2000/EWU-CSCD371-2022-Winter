@@ -48,14 +48,13 @@ namespace GenericsHomework.Tests
             node.Append(null);
         }
         [TestMethod]
-        public void Clear_MemoryCleared()
+        public void Clear_ClearsList()
         {
             Node node = new("1st");
             node.Append("2nd");
-            node.Append("3rd"); //Check memory usage here, using Diagnostic Tools
-            node.Clear();
-            GC.Collect();   
-            Assert.AreEqual(node, node.GetNext());//Check memory usage here, is lower
+            node.Append("3rd");
+            node.Clear();  
+            Assert.AreEqual(node, node.GetNext());
         }
     }
 }
