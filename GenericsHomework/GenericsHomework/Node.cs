@@ -1,63 +1,36 @@
 ﻿namespace GenericsHomework
 {
-    public class Node
+    public class Node<T> where T : notnull
     {
-        public object? Value { get; set; }
-        private Node Next { get;  set; }
-        public Node GetNext() { return Next; }
-        public Node(object? value)
+        private T Value { get; set; }
+        public Node<T> Next { get;  private set; }
+
+        public Node(T value)
         {
             Value = value;
             Next = this;
         }
-        public override string ToString()
+        public override string? ToString()
         {
-            if (Value == null)  
-                return "null";
-            Type type = Value.GetType();
-            if(type == typeof(string) || type == typeof(char))
-            {
-                return (string)Value;
-            }
-            if(type == typeof(bool))
-            {
-                bool b = (bool)Value;
-                if (b)
-                    return "true";
-                else
-                    return "false";
-            }
-            if(type == typeof(int))
-            {
-                return $"{(int)Value}";
-            }
-            if(type == typeof(Int64))
-            {
-                return $"{(Int64)Value}";
-            }
-            if(type == typeof(float) || type == typeof(Double))
-            {
-                return $"{(Double)Value}";
-            }
-            return "Type unknown";
+            return Value.ToString();
         }
-        public void Append(object? value)
+        public void Append(T value)
         {
             if (Exists(value))
                 throw new ArgumentException("Value already exists in list.");
-            Node index = this;
+            Node<T> index = this;
             while (Next != index)
             {
                 index = index.Next;
             }
-            index.Next = new Node(value);
+            index.Next = new Node<T>(value);
             index = index.Next;
             index.Next = this;
         }
-        public bool Exists(object? Value)
+        public bool Exists(T Value)
         {
-            Node temp = new(Value);
-            Node index = this;
+            Node<T> temp = new(Value);
+            Node<T> index = this;
             if(temp.ToString() == index.ToString())
                 return true;
             while(index.Next != this)
@@ -75,7 +48,7 @@
             //debug builds will hang onto that memory for longer though.
             if (this == this.Next)
                return;
-           Node index = this;
+           Node<T> index = this;
            while (index.Next != this)
                index = index.Next;
            index.Next = index.Next.Next;
