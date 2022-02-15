@@ -11,10 +11,11 @@ namespace Assignment
         {
             get
             {
-                string[] rows = File.ReadAllLines("People.csv");
+                string location = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string[] rows = File.ReadAllLines($"{location}/People.csv");
                 IEnumerable<string> CsvRows =
-                    from Id in rows
-                    select Id, FirstName, LastName, Email, StreetAddress, City, State, Zip;
+                    select Id, FirstName, LastName, Email, StreetAddress, City, State, Zip
+                    from rows
             }
         }
 
