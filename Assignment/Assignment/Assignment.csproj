@@ -1,5 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<LangVersion>10.0</LangVersion>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+	</PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Assignment.Interfaces\Assignment.Interfaces.csproj" />
   </ItemGroup>
