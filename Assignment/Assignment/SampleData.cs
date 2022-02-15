@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Assignment
 {
     public class SampleData : ISampleData
     {
         // 1.
-        public IEnumerable<string> CsvRows => throw new NotImplementedException();
+        public IEnumerable<string> CsvRows()
+        {
+            get
+            {
+                string[] rows = File.ReadAllLines("People.csv");
+                IEnumerable<string> CsvRows =
+                    from Id in rows
+                    select Id, FirstName, LastName, Email, StreetAddress, City, State, Zip;
+            }
+        }
 
         // 2.
         public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows() 
