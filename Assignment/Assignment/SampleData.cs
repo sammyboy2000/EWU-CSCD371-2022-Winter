@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Assignment
 {
     public class SampleData : ISampleData
     {
         // 1.
-        public IEnumerable<string> CsvRows()
+        public IEnumerable<string> CsvRows
         {
             get
             {
                 string location = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                string[] rows = File.ReadAllLines($"{location}/People.csv");
+                string[] rows = File.ReadAllLines("People.csv");
                 IEnumerable<string> CsvRows =
-                    select Id, FirstName, LastName, Email, StreetAddress, City, State, Zip
-                    from rows
+                    rows.Skip(1);
+                return CsvRows;
             }
+
         }
 
         // 2.
