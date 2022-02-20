@@ -6,6 +6,9 @@
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
+	<ItemGroup>
+	  <PackageReference Include="System.Runtime" Version="4.3.1" />
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Assignment.Interfaces\Assignment.Interfaces.csproj" />
   </ItemGroup>
