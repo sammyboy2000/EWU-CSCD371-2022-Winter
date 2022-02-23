@@ -56,10 +56,30 @@ namespace Assignment.Tests
             }
         }
         [TestMethod]
+        public void GetUniqueSortedListOfStatesActuallySortedUsingLINQ()
+        {
+            SampleData sampleData = new();
+            IEnumerable<string> data = sampleData.GetUniqueSortedListOfStatesGivenCsvRows();
+            IEnumerable<string> testData = sampleData.CsvRows.Select(item =>
+            {
+                string[] split = item.Split(","); return split[6];
+            }).Distinct();
+            testData = from d in testData
+                      orderby d ascending
+                      select d;
+            int count = 0;
+            foreach (string d in data)
+            {
+                Assert.AreEqual<int>(0, string.Compare(d, testData.ElementAt(count)));
+                Assert.IsFalse(ExistsMoreThanOnce(data, d));
+                count++;
+            }
+        }
+        [TestMethod]
         public void GetUniqueSortedListOfStatesUsingSpokaneAddresses()
         {
             SampleData sampleData = new();
-            sampleData.CsvRows = new List<string> { "1,John,Smith,example@email.com,123 Street Ave,Spokane,WA,99207",
+            sampleData.CsvRows = new List<string> {"1,John,Smith,example@email.com,123 Street Ave,Spokane,WA,99207",
                                          "2,Jane,Doe,example@email.com,456 Avenue St,Spokane,WA,99206",
                                          "3,Walter,White,example@email.com,789 Avenue St,Spokane,WA,99208",
                                          "4,Linus,Torvalds,example@email.com,101 Street Ave,Spokane,WA,99203",

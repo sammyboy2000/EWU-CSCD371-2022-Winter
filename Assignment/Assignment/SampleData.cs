@@ -7,11 +7,16 @@ namespace Assignment
 {
     public class SampleData : ISampleData
     {
+        private IEnumerable<string>? _CsvRows;
         // 1.
         public IEnumerable<string> CsvRows
         {
             get
             {
+                if(this._CsvRows != null)
+                {
+                    return this._CsvRows;
+                }
                 string[] rows = File.ReadAllLines("People.csv");
                 IEnumerable<string> CsvRows =
                     rows.Skip(1);
@@ -19,7 +24,7 @@ namespace Assignment
             }
             set
             {
-                CsvRows = value;
+                _CsvRows = value;
             }
         }
 
