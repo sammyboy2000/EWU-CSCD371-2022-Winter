@@ -55,6 +55,23 @@ namespace Assignment.Tests
                 highest = d;
             }
         }
+        [TestMethod]
+        public void GetUniqueSortedListOfStatesUsingSpokaneAddresses()
+        {
+            SampleData sampleData = new();
+            sampleData.CsvRows = new[] { "1,John,Smith,example@email.com,123 Street Ave,Spokane,WA,99207",
+                                         "2,Jane,Doe,example@email.com,456 Avenue St,Spokane,WA,99206",
+                                         "3,Walter,White,example@email.com,789 Avenue St,Spokane,WA,99208",
+                                         "4,Linus,Torvalds,example@email.com,101 Street Ave,Spokane,WA,99203",
+                                         "5,Not,Me,example@email.com,112 Street Ave,Spokane,WA,99207"
+                                        };
+            IEnumerable<string> dataSet = sampleData.GetUniqueSortedListOfStatesGivenCsvRows();
+            foreach (string data in dataSet)
+            {
+                Assert.IsFalse(ExistsMoreThanOnce(dataSet, data));
+            }
+        }
+        [TestMethod]
         public void GetUniqueSortedListOfStatesActuallySortedString()
         {
             string highest = " ";

@@ -19,6 +19,7 @@ namespace Assignment
             }
             set
             {
+                CsvRows = value;
             }
         }
 
@@ -59,6 +60,7 @@ namespace Assignment
             }
             set
             {
+                People = value;
             }
         }
 
