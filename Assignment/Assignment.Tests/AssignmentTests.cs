@@ -59,7 +59,7 @@ namespace Assignment.Tests
         public void GetUniqueSortedListOfStatesUsingSpokaneAddresses()
         {
             SampleData sampleData = new();
-            sampleData.CsvRows = new[] { "1,John,Smith,example@email.com,123 Street Ave,Spokane,WA,99207",
+            sampleData.CsvRows = new List<string> { "1,John,Smith,example@email.com,123 Street Ave,Spokane,WA,99207",
                                          "2,Jane,Doe,example@email.com,456 Avenue St,Spokane,WA,99206",
                                          "3,Walter,White,example@email.com,789 Avenue St,Spokane,WA,99208",
                                          "4,Linus,Torvalds,example@email.com,101 Street Ave,Spokane,WA,99203",
@@ -77,8 +77,8 @@ namespace Assignment.Tests
             string highest = " ";
             SampleData sampleData = new();
             string result = sampleData.GetAggregateSortedListOfStatesUsingCsvRows();
-            IEnumerable<string> data = result.Split(",");
-            foreach (string d in data)
+            string[] data = result.Split(", ");
+            foreach(string d in data)
             {
                 Assert.AreEqual<int>(1, string.Compare(d, highest));
                 Assert.IsFalse(ExistsMoreThanOnce(data, d));
