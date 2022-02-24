@@ -1,9 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment.Tests
 {
@@ -64,10 +61,10 @@ namespace Assignment.Tests
             Node<string> node = new("1st");
             node.Append("2nd");
             node.Append("3rd");
-            string[] expectedResult = {"1st", "2nd", "3rd"};
+            string[] expectedResult = { "1st", "2nd", "3rd" };
             int count = 0;
             IEnumerable<string> list = (IEnumerable<string>)node.WholeList;
-            foreach(string value in list)
+            foreach (string value in list)
             {
                 Assert.AreEqual(expectedResult[count++], value);
             }

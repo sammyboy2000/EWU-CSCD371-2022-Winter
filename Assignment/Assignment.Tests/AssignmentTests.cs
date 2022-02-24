@@ -3,15 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment.Tests
 {
     [TestClass]
     public class AssignmentTests
     {
-        [DeploymentItem ("People.csv")]
+        [DeploymentItem("People.csv")]
         [TestMethod]
         public void FileExists()
         {
@@ -24,12 +22,12 @@ namespace Assignment.Tests
             SampleData sampleData = new();
             IEnumerable<string> allRows = sampleData.CsvRows;
             int count = 0;
-            foreach(string row in allRows)
+            foreach (string row in allRows)
             {
                 Assert.IsNotNull(row);
                 count++;
             }
-            Assert.AreEqual<int>(51-1, count);
+            Assert.AreEqual<int>(51 - 1, count);
         }
 
         [TestMethod]
@@ -37,9 +35,9 @@ namespace Assignment.Tests
         {
             SampleData sampleData = new();
             IEnumerable<string> dataSet = sampleData.GetUniqueSortedListOfStatesGivenCsvRows();
-            foreach(string data in dataSet)
+            foreach (string data in dataSet)
             {
-                Assert.IsFalse(ExistsMoreThanOnce(dataSet,data));
+                Assert.IsFalse(ExistsMoreThanOnce(dataSet, data));
             }
         }
         [TestMethod]
@@ -48,7 +46,7 @@ namespace Assignment.Tests
             string highest = " ";
             SampleData sampleData = new();
             IEnumerable<string> data = sampleData.GetUniqueSortedListOfStatesGivenCsvRows();
-            foreach(string d in data)
+            foreach (string d in data)
             {
                 Assert.AreEqual<int>(1, string.Compare(d, highest));
                 Assert.IsFalse(ExistsMoreThanOnce(data, d));
@@ -65,8 +63,8 @@ namespace Assignment.Tests
                 string[] split = item.Split(","); return split[6];
             }).Distinct();
             testData = from d in testData
-                      orderby d ascending
-                      select d;
+                       orderby d ascending
+                       select d;
             int count = 0;
             foreach (string d in data)
             {
@@ -98,7 +96,7 @@ namespace Assignment.Tests
             SampleData sampleData = new();
             string result = sampleData.GetAggregateSortedListOfStatesUsingCsvRows();
             string[] data = result.Split(", ");
-            foreach(string d in data)
+            foreach (string d in data)
             {
                 Assert.AreEqual<int>(1, string.Compare(d, highest));
                 Assert.IsFalse(ExistsMoreThanOnce(data, d));
@@ -146,14 +144,15 @@ namespace Assignment.Tests
             string result = sampleData.GetAggregateListOfStatesGivenPeopleCollection(null!);
             Assert.AreEqual<string>(result, sampleData.GetAggregateSortedListOfStatesUsingCsvRows());
         }
+        //Used multiple times within other tests
         public static bool ExistsMoreThanOnce(IEnumerable<string> collection, string check)
         {
             int count = 0;
-            foreach(string existing in collection)
+            foreach (string existing in collection)
             {
                 if (existing == check)
                     count++;
-                if (count>1)
+                if (count > 1)
                     return true;
             }
             return false;

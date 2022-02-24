@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment
 {
@@ -46,7 +44,7 @@ namespace Assignment
                     return true;
                 index = index.Next;
             } while (index != this);
-                return false;
+            return false;
         }
         public void Clear()
         {
@@ -63,23 +61,23 @@ namespace Assignment
         }
 
         //New work begins here...
-        public IEnumerable<T> WholeList 
+        public IEnumerable<T> WholeList
         {
             get
-            { 
+            {
                 Node<T> index = this;
                 do
                 {
                     yield return index.Value;
                     index = index.Next;
 
-                }while (index != this);
-            } 
+                } while (index != this);
+            }
         }
         public IEnumerable<T> ChildItems(int maximum)
         {
             IEnumerable<T> temp = this.WholeList;
-            for(int i = 0; i < maximum; i++)
+            for (int i = 0; i < maximum; i++)
             {
                 yield return temp.ElementAt(i);
             }

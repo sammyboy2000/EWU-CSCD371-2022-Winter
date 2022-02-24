@@ -13,7 +13,7 @@ namespace Assignment
         {
             get
             {
-                if(this._CsvRows != null)
+                if (this._CsvRows != null)
                 {
                     return this._CsvRows;
                 }
@@ -87,7 +87,7 @@ namespace Assignment
             IEnumerable<string> states = people.Select(people => people.Address.State)
                 .OrderBy(state => state)
                 .Distinct();
-            
+
             return states.Aggregate((a, b) => a + ", " + b);
         }
     }
