@@ -8,6 +8,7 @@ namespace Assignment
     public class SampleData : ISampleData
     {
         private IEnumerable<string>? _CsvRows;
+        IEnumerable<IPerson>? _People;
         // 1.
         public IEnumerable<string> CsvRows
         {
@@ -55,17 +56,20 @@ namespace Assignment
         {
             get
             {
-                List<Person> people = new List<Person>();
-                foreach (string person in CsvRows)
-                {
-                    string[] info = person.Split(",");
-                    people.Add(new Person(info[1], info[2], new Address(info[4], info[5], info[6], info[7]), info[3]));
-                }
-                return people;
+                if (_People != null)
+                    return _People;
+                return CsvRows.Select(line => line.Split(','))
+                        .OrderBy(state => state[6])
+                        .ThenBy(city => city[5])
+                        .ThenBy(zip => zip[7])
+                        .Select(
+                            person => new Person(person[1], person[2],
+                                new Address(person[4], person[5], person[6], person[7]),
+                                person[3]));
             }
             set
             {
-                People = value;
+                _People = value;
             }
         }
 
@@ -73,9 +77,9 @@ namespace Assignment
         public IEnumerable<(string FirstName, string LastName)> FilterByEmailAddress(
             Predicate<string> filter)
         {
-            IEnumerable<IPerson> people = People.Where(person => filter(person.EmailAddress));
-            IEnumerable<(string, string)> results = people.Select(person => { return (person.FirstName, person.LastName); });
-            return results;
+            IEnumerable<IPerson> people = People;
+            IEnumerable<(string FirstName, string LastName)> result = people.Where(x => filter(x.EmailAddress)).Select(name => (first: name.FirstName.Trim(), last: name.LastName.Trim()));
+            return result;
         }
 
         // 6.

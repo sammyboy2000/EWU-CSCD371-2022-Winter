@@ -27,7 +27,7 @@ namespace Assignment.Tests
                 Assert.IsNotNull(row);
                 count++;
             }
-            Assert.AreEqual<int>(51 - 1, count);
+            Assert.AreEqual<int>(50, count);
         }
 
         [TestMethod]
@@ -108,12 +108,14 @@ namespace Assignment.Tests
         public void PeopleContainsPersons()
         {
             SampleData sampleData = new();
-            IEnumerable<string> rows = sampleData.CsvRows;
+            IEnumerable<string[]> rows = sampleData.CsvRows.Select(line => line.Split(","))
+                .OrderBy(state => state[6])
+                        .ThenBy(city => city[5])
+                        .ThenBy(zip => zip[7]);
             int count = 0;
             foreach (Person p in sampleData.People)
             {
-                string person = rows.ElementAt(count);
-                string[] info = person.Split(",");
+                string[] info = rows.ElementAt(count);
                 Assert.AreEqual<string>(info[1], p.FirstName);
                 Assert.AreEqual<string>(info[2], p.LastName);
                 Assert.AreEqual<string>(info[3], p.EmailAddress);
@@ -128,14 +130,15 @@ namespace Assignment.Tests
         [TestMethod]
         public void FilterByEmailAddressSuccessful()
         {
-            SampleData sampleData = new SampleData();
-            IEnumerable<(string firstName, string lastName)> results = sampleData.FilterByEmailAddress(new Predicate<string>(email => email == "pjenyns0@state.gov"));
-            Person person = (Person)sampleData.People.First();
-            foreach ((string fName, string lName) result in results)
-            {
-                Assert.AreEqual<string>(result.fName, person.FirstName);
-                Assert.AreEqual(result.lName, person.LastName);
-            }
+            SampleData sampleData = new();
+            Predicate<string> filter = email;
+            static bool email(string email) => email.Contains("pjenyns0@state.gov");
+            IEnumerable<(string, string)> result = sampleData.FilterByEmailAddress(filter);
+
+            string[] test = {"Priscilla", "Jenyns"};
+            Console.WriteLine(result.First().Item1);
+
+            Assert.AreEqual((test[0], test[1]), (result.First().Item1, result.First().Item2));
         }
         [TestMethod]
         public void GetAggregatedListOfStatesGivenPeopleCollectionProperlyUnique()
