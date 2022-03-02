@@ -1,4 +1,38 @@
-.redtext 
+#top {
+    background-color: black;
+    height : 10%;
+    
+}
+#title
 {
-    color : red;
+    color : rgb(190, 0, 0);
+    font-size: xx-large;
+    background-color: black;
+    padding: 1%;
+}
+#menu{
+    color : white;
+    float : right;
+}
+body {
+    width : 70%;    
+    margin : auto;
+}
+hr{
+    color : gray;
+}
+#menu{
+    float : right;
+    background: black;
+    color : white;
+}
+.jokeCard{
+    border-radius: 25px;
+     border: 1px solid;
+    padding: 20px;
+     width: 90%;
+     height: 40%;
+}
+.grayBG{
+    background-color: lightgray;
 }
