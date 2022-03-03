@@ -28,11 +28,17 @@ hr{
 }
 .jokeCard{
     border-radius: 25px;
-     border: 1px solid;
-    padding: 20px;
-     width: 90%;
-     height: 40%;
+    border: 1px solid;     
+    height: 80%;
+    background: linear-gradient(to bottom, lightgrey 0%, lightgrey 25%, white 20%)
 }
-.grayBG{
-    background-color: lightgray;
+.padded{
+    padding:10px;
+}
+.fancyButton{
+    
+background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  100%);
+
+color : white;
+    
 }

@@ -4,8 +4,8 @@
     <title>The Joke Page</title>
     <link rel="stylesheet" href="css/site.css">
     <link rel="stylesheet" href="css/all.css">
-    <script type="text/javascript" src="js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     </head>
 
     <body>
@@ -18,8 +18,16 @@
         <h1>The Joke Page</h1>
         <hr>
         <div class="jokeCard">
-            <h2 class="grayBG">A Joke</h3>
+            <h2 class="padded">A Joke</h2>
+            <br>
+            <div id="joke" class="padded"></div>
+            <br>
+            <div id="punchline" class="padded"></div>
             <hr>
+            <div id="footer" class="padded">
+            <input type="button" value="Another Joke" onclick="getJoke()" class="fancyButton"></input> 
+            <a href="https://v2.jokeapi.dev/">Joke API</a>
+            </div>
         </div>
     </body>
 </html>
