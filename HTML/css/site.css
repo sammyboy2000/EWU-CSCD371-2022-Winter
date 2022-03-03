@@ -42,3 +42,25 @@ background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  100%);
 color : white;
     
 }
+#apiButton{
+    background-color: lightgray;
+    color : black;
+    border : 1px;
+    border-radius: 1px;
+   
+}
+#dropDown{
+    border-radius: 25px;
+    border: 1px solid;     
+    padding : 10px;
+    position : absolute;
+}
+.menuOff     
+{    
+    display: none;    
+}    
+    
+.menuOn    
+{    
+    display: block;    
+}  
