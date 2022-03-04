@@ -37,29 +37,40 @@ hr{
 }
 .fancyButton{
     
-background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  100%);
-
-color : white;
-    
+    background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  100%);
+    color : white;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+}
+.menuButton{
+    background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  100%);
+    color : white;
+    text-align: center;
+    width: 200px;
+    height: 40px;
+    margin-top: 5px;
 }
 #apiButton{
     background-color: lightgray;
     color : black;
-    border : 1px;
+    border : 1px solid;
     border-radius: 1px;
-   
+    width: 100px;
+    height: 40px;
 }
 #dropDown{
-    border-radius: 25px;
-    border: 1px solid;     
-    padding : 10px;
-    position : absolute;
+    border: 3px solid gray;     
+    padding : 15px;
+    position : relative;
+    float : right;
+    background: white;
+    width: 200px;
 }
 .menuOff     
 {    
     display: none;    
 }    
-    
 .menuOn    
 {    
     display: block;    
