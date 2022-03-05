@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
     <head>
     <title>The Joke Page</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
     <link rel="stylesheet" href="css/site.css">
     <link rel="stylesheet" href="css/all.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/index.js"></script>
     </head>
 
     <body>
@@ -16,19 +16,13 @@
             </p>
         </div>
         <div id="dropDown" class="menuOff">
-            <input type='button' class='menuButton' value='ALERT!!!' onclick="alert('alert')"></input>
+            <button class='menuButton' onclick="alert('alert')">ALERT!!!</button>
             <br>
-            <a href="https://en.wikipedia.org/wiki/Wii">
-            <input type='button' class='menuButton' value='WE'></input>
-            </a>
+            <button class='menuButton' onclick="location.href='https://en.wikipedia.org/wiki/Wii'">WE</button>
             <br>
-            <a href="https://www.merriam-webster.com/dictionary/are">
-            <input type='button' class='menuButton' value='ARE'></input>
-            </a>
+            <button class='menuButton' onclick="location.href='https://www.merriam-webster.com/dictionary/are'">ARE</button>
             <br>
-            <a href="https://js-dos.com/DOOM/">
-                <input type='button' class='menuButton' value='DOOMED!!!'></input>
-            </a>
+            <button class='menuButton' onclick="location.href='https://js-dos.com/DOOM/'">DOOMED!!!</button>
         </div>
         <h1>The Joke Page</h1>
         <hr>
@@ -40,8 +34,8 @@
             <div id="punchline" class="padded"></div>
             <hr>
             <div id="footer" class="padded">
-            <input type="button" value="Another Joke" onclick="getJoke()" class="fancyButton"></input> 
-            <a href="https://v2.jokeapi.dev/"><input type="button" id="apiButton" value="Joke API"></input></a>
+            <button onclick="getJoke()" class="fancyButton">Another Joke</button>
+            <a href='https://v2.jokeapi.dev/' id="apiButton">Joke API</a>
             </div>
         </div>
     </body>
