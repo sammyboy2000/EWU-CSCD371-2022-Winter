@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -20,9 +19,9 @@ public class PingProcess
         StartInfo.Arguments = hostNameOrAddress;
         StringBuilder? stringBuilder = null;
         void updateStdOutput(string? line) =>
-            (stringBuilder??=new StringBuilder()).AppendLine(line);
+            (stringBuilder ??= new StringBuilder()).AppendLine(line);
         Process process = RunProcessInternal(StartInfo, updateStdOutput, default, default);
-        return new PingResult( process.ExitCode, stringBuilder?.ToString());
+        return new PingResult(process.ExitCode, stringBuilder?.ToString());
     }
 
     public Task<PingResult> RunTaskAsync(string hostNameOrAddress)
@@ -36,15 +35,26 @@ public class PingProcess
     async public Task<PingResult> RunAsync(
         string hostNameOrAddress, CancellationToken cancellationToken = default)
     {
-        StartInfo.Arguments = hostNameOrAddress;
-        StringBuilder? stringBuilder = null;
-        void updateStdOutput(string? line) =>
-            (stringBuilder ??= new StringBuilder()).AppendLine(line);
-        Task<PingResult> task = Task.Run(() => {
-            Process process = RunProcessInternal(StartInfo, updateStdOutput, default, cancellationToken);
-            return new PingResult(process.ExitCode, stringBuilder?.ToString());
-        });
-        return await task;
+        try
+        {
+            StartInfo.Arguments = hostNameOrAddress;
+            StringBuilder? stringBuilder = null;
+            void updateStdOutput(string? line) =>
+                (stringBuilder ??= new StringBuilder()).AppendLine(line);
+            cancellationToken.ThrowIfCancellationRequested();
+            Task<PingResult> task = Task.Run(() =>
+            {
+                Process process = RunProcessInternal(StartInfo, updateStdOutput, updateStdOutput, cancellationToken);
+                cancellationToken.ThrowIfCancellationRequested();
+                return new PingResult(process.ExitCode, stringBuilder?.ToString());
+            }, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            return await task;
+        }
+        catch (OperationCanceledException ex)
+        {
+            throw new AggregateException(ex);
+        }
     }
 
     async public Task<PingResult> RunAsync(params string[] hostNameOrAddresses)
