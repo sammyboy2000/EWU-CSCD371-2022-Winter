@@ -36,9 +36,15 @@ public class PingProcess
     async public Task<PingResult> RunAsync(
         string hostNameOrAddress, CancellationToken cancellationToken = default)
     {
-        Task task = null!;
-        await task;
-        throw new NotImplementedException();
+        StartInfo.Arguments = hostNameOrAddress;
+        StringBuilder? stringBuilder = null;
+        void updateStdOutput(string? line) =>
+            (stringBuilder ??= new StringBuilder()).AppendLine(line);
+        Task<PingResult> task = Task.Run(() => {
+            Process process = RunProcessInternal(StartInfo, updateStdOutput, default, cancellationToken);
+            return new PingResult(process.ExitCode, stringBuilder?.ToString());
+        });
+        return await task;
     }
 
     async public Task<PingResult> RunAsync(params string[] hostNameOrAddresses)
