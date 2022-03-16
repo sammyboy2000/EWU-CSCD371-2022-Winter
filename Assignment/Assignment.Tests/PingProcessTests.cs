@@ -88,15 +88,17 @@ public class PingProcessTests
         AssertValidPingOutput(result);
     }
 
-
+    //Having trouble getting this test to run on my setup.
+    //I know it works from debugging RunAsync_UsingTplWithCancellation_CatchAggregateExceptionWrappingTaskCanceledException()
+    //Because this section of that test returns an Aggregate Exception
     [TestMethod]
     [ExpectedException(typeof(AggregateException))]
     public async void RunAsync_UsingTplWithCancellation_CatchAggregateExceptionWrapping()
     {
         CancellationTokenSource tokenSource = new();
-        Task<PingResult> task = Sut.RunAsync("localhost", tokenSource.Token);
         tokenSource.Cancel();
-        await task;
+        Task<PingResult> task = Sut.RunAsync("localhost", tokenSource.Token);
+        _ = await task;
     }
 
     [TestMethod]
@@ -104,6 +106,18 @@ public class PingProcessTests
     public void RunAsync_UsingTplWithCancellation_CatchAggregateExceptionWrappingTaskCanceledException()
     {
         // Use exception.Flatten()
+        CancellationTokenSource tokenSource = new();
+        tokenSource.Cancel();
+        Task<PingResult> task = Sut.RunAsync("localhost", tokenSource.Token);
+        try
+        {
+            _ = task.Result;
+        }
+        catch (AggregateException ae)
+        {
+            foreach (Exception ex in ae.Flatten().InnerExceptions)
+                throw ex;
+        }
     }
 
     [TestMethod]
