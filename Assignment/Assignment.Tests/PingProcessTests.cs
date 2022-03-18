@@ -115,8 +115,9 @@ public class PingProcessTests
         }
         catch (AggregateException ae)
         {
-            foreach (Exception ex in ae.Flatten().InnerExceptions)
-                throw ex;
+            ae = ae.Flatten();
+            //Don't know why it complains, so I asked it to trust me...
+            throw ae.InnerException!;
         }
     }
 
@@ -125,21 +126,20 @@ public class PingProcessTests
     {
         // Pseudo Code - don't trust it!!!
         string[] hostNames = new string[] { "localhost", "localhost", "localhost", "localhost" };
-        int expectedLineCount = PingOutputLikeExpression.Split(Environment.NewLine).Length * hostNames.Length;
+        string[] expectedLineCount = PingOutputLikeExpression.Split(Environment.NewLine);
         PingResult result = await Sut.RunAsync(hostNames);
-        int? lineCount = result.StdOutput?.Split(Environment.NewLine).Length;
+        string[]? lineCount = result.StdOutput?.Trim().Split(Environment.NewLine);
         Assert.AreEqual(expectedLineCount, lineCount);
     }
 
     [TestMethod]
-#pragma warning disable CS1998 // Remove this
     async public Task RunLongRunningAsync_UsingTpl_Success()
     {
-        PingResult result = default;
         // Test Sut.RunLongRunningAsync("localhost");
+        Task<PingResult> output = Sut.RunLongRunningAsync("localhost");
+        PingResult result = await output;
         AssertValidPingOutput(result);
     }
-#pragma warning restore CS1998 // Remove this
 
     [TestMethod]
     public void StringBuilderAppendLine_InParallel_IsNotThreadSafe()
